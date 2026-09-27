@@ -1,7 +1,9 @@
 # Aplikasi Pahlawan Nasional
 
-Aplikasi Flutter yang menampilkan informasi 15 Pahlawan Nasional Indonesia.
+Aplikasi Flutter yang dibuat untuk menampilkan informasi mengenai Pahlawan Nasional Indonesia. Aplikasi ini menyediakan daftar pahlawan yang dilengkapi dengan foto, asal daerah, masa hidup, dan biografi singkat.
 
-## Preview
+Aplikasi juga terhubung dengan database MySQL untuk menyimpan data pahlawan. Pengguna dapat melihat, menambahkan, mengubah, dan menghapus data pahlawan melalui aplikasi.
 
-![Preview Aplikasi]()
+Selain informasi pahlawan, tersedia fitur komentar pada setiap halaman detail pahlawan sehingga pengguna dapat memberikan komentar terkait informasi yang ditampilkan.
+
+Aplikasi ini dibuat menggunakan Flutter sebagai frontend, PHP sebagai API, dan MySQL sebagai database.
