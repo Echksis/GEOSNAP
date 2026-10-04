@@ -19,15 +19,19 @@ Melalui GeoSnap, pengguna dapat mendokumentasikan berbagai aktivitas, kejadian, 
 ## 📱 Tampilan Aplikasi
 
 ### Dashboard
+
 Halaman utama GeoSnap menyediakan ringkasan laporan dan navigasi menuju fitur utama aplikasi.
 
 ### Buat Laporan
+
 Pengguna dapat menambahkan laporan dengan mengisi informasi yang dibutuhkan, melampirkan foto, serta menyertakan koordinat GPS.
 
 ### Daftar Laporan
+
 Seluruh laporan yang tersimpan ditampilkan dalam bentuk kartu yang memudahkan pengguna untuk melihat dan mengelolanya.
 
 ### Detail Laporan
+
 Setiap laporan dapat dibuka untuk melihat foto secara lebih jelas dan membaca informasi lengkap yang telah dicatat.
 
 ## 🎯 Tujuan Aplikasi
@@ -42,5 +46,3 @@ Dengan menggabungkan dokumentasi foto dan informasi lokasi GPS, GeoSnap membantu
 - **PHP** — Pengelolaan komunikasi antara aplikasi dan server.
 - **MySQL** — Penyimpanan data laporan.
 - **XAMPP** — Lingkungan server lokal selama pengembangan.
-
----

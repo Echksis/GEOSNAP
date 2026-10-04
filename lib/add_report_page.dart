@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'api_service.dart';
 import 'location_service.dart';
@@ -28,6 +29,41 @@ class _AddReportPageState extends State<AddReportPage> {
   bool _loading = false;
   bool _gettingLocation = false;
   bool _takingPhoto = false;
+  bool _pickingImage = false;
+
+  // Memilih gambar dari galeri atau folder perangkat.
+  Future<void> _pickImage() async {
+    if (_pickingImage) return;
+
+    setState(() {
+      _pickingImage = true;
+    });
+
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile == null) return;
+
+      final bytes = await pickedFile.readAsBytes();
+      if (!mounted) return;
+
+      setState(() {
+        _imageBytes = bytes;
+      });
+      _showMessage('Gambar berhasil dipilih.');
+    } catch (e) {
+      if (mounted) {
+        _showMessage('Gagal memilih gambar: $e');
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _pickingImage = false;
+        });
+      }
+    }
+  }
 
 
   // Membuka kamera browser.
@@ -125,7 +161,7 @@ class _AddReportPageState extends State<AddReportPage> {
     if (!_formKey.currentState!.validate()) return;
 
     if (_imageBytes == null) {
-      _showMessage('Silakan ambil foto terlebih dahulu.');
+      _showMessage('Silakan ambil foto atau pilih gambar terlebih dahulu.');
       return;
     }
 
@@ -284,14 +320,25 @@ class _AddReportPageState extends State<AddReportPage> {
 
               const SizedBox(height: 10),
 
-              OutlinedButton.icon(
-                onPressed: _takingPhoto ? null : _openCamera,
-                icon: const Icon(Icons.camera_alt),
-                label: Text(
-                  _takingPhoto
-                      ? 'Membuka kamera...'
-                      : 'Buka Kamera',
-                ),
+              Wrap(
+                spacing: 10,
+                runSpacing: 8,
+                children: [
+                  OutlinedButton.icon(
+                    onPressed: _takingPhoto ? null : _openCamera,
+                    icon: const Icon(Icons.camera_alt),
+                    label: Text(
+                      _takingPhoto ? 'Membuka kamera...' : 'Buka Kamera',
+                    ),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: _pickingImage ? null : _pickImage,
+                    icon: const Icon(Icons.folder_open),
+                    label: Text(
+                      _pickingImage ? 'Memilih gambar...' : 'Pilih dari Folder',
+                    ),
+                  ),
+                ],
               ),
 
               const SizedBox(height: 20),
